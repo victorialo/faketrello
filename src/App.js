@@ -8,6 +8,8 @@ const NotTrello = styled.div`
   position: relative;
   width: 80%;
   margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
 `
 
 function App() {

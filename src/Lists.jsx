@@ -3,12 +3,32 @@ import styled from 'styled-components';
 // import { DragDropContext } from 'react-beautiful-dnd';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
+// cool potential features:
+// add a title per list
+// add or take away lists
+// change background color(s)
+// display history of movement
+
 const List = styled.div`
-  margin: 0 auto;
+  margin: 10px auto;
+  border: 1px black solid;
+  background-color: darkslateblue;
+  padding: 10px;
+  
+  .list-0 {
+    background-color: darkred;
+  }
+  .list-1 {
+    background-color: darkkhaki;
+  }
+  .list-2 {
+    background-color: #61dafb;
+  }
 `
 
 const AddItem = styled.input`
-  
+  margin: 10px;
+  width: 80%;  
 `
 const Items = styled.div`
   margin: 0 auto;
@@ -16,7 +36,10 @@ const Items = styled.div`
 const Item = styled.div`
   display: flex;
   justify-content: space-between;
-  margin: 0 auto;
+  margin: 2px auto;
+  padding: 5px;
+  border: 1px black solid;
+  background-color: rgba(255, 255, 255, 0.8);
 `
 
 // class Lists extends React.Component {
@@ -164,6 +187,7 @@ const Lists = (props) => {
           {(provided, snapshot) => (
             <div
               ref={provided.innerRef}
+              style={{ backgroundColor: snapshot.isDraggingOver ? 'aliceblue' : 'grey' }}
               {...provided.draggableProps}
               {...provided.dragHandleProps}
             >
@@ -177,8 +201,9 @@ const Lists = (props) => {
       );
     })
     // console.log("updating input in ", num);
+    // console.log("classname", `list-${num}`);
     return (
-      <List className={num}>
+      <List className={`list-${num}`}>
       <form onSubmit={(e) => addItem(e, num)}>
         <AddItem type="text" onChange={e => updateInput(e, num)} value={input[num]}/>
       </form>
@@ -187,7 +212,8 @@ const Lists = (props) => {
           {(provided, snapshot) => (
             <div
               ref={provided.innerRef}
-              style={{ backgroundColor: snapshot.isDraggingOver ? 'aliceblue' : 'grey' }}
+              className={`list-${num}`}
+              // style={{ backgroundColor: snapshot.isDraggingOver ? 'aliceblue' : 'grey' }}
               {...provided.droppableProps}
             >
               {itElems}
