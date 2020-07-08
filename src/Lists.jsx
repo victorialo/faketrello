@@ -8,7 +8,9 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 // add or take away lists
 // change background color(s)
 // display history of movement/add/remove
-// actually display
+// scroll to accommodate longer submissions
+// check off submissions rather than delete
+// actually show errors when submitting identical or empty submissions
 
 const List = styled.div`
   margin: 10px auto;
