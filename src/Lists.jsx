@@ -32,22 +32,26 @@ const Lists = (props) => {
 
   const [lists, setLists] = useState([[],[],[]]);
   const [input, setInput] = useState(["","",""]);
+  const [entries, setEntries] = useState(new Set());
 
   const addItem = (e, listNum) => {
     e.preventDefault();
     const num = parseInt(listNum);
     // const input = e.target.value();
-    console.log("input", num, input[num]);
-    if (input[num].length < 1 || lists[listNum].includes(input[num])) {
+    // console.log("input", num, input[num]);
+    let item = input[num];
+    if (item.length < 1 || entries.has(item)) {//lists[listNum].includes(input[num])) {
       console.error("bad input - empty or duplicate");
       return;
     };
     let newLists = [...lists];
     let current = newLists[num];
-    current.push(input[num]);
+    current.push(item);
     newLists[num] = current;
     setLists(newLists);
-    console.log("updated list", newLists);
+    entries.add(item);
+    setEntries(entries);
+    // console.log("updated list", newLists);
     setInput(["","",""]);
     // Number(list)
   }
@@ -57,9 +61,12 @@ const Lists = (props) => {
     let newLists = [...lists];
     let current = newLists[list];
     // current.indexOf(item);
+    let item = current[ind];
+    // console.log("newlist", current);
+    entries.delete(item);
+    setEntries(entries);
     current.splice(ind, 1);
     newLists[num] = current;
-    console.log("newlist", current);
     setLists(newLists);
   }
 
@@ -84,7 +91,7 @@ const Lists = (props) => {
     // let newListTo = [...listTo];
     const removedItem = listFrom.splice(indFrom,1)[0];
     listTo.splice(indTo,0, removedItem);
-    console.log("listfrom", listFrom, "listto", listTo);
+    // console.log("listfrom", listFrom, "listto", listTo);
     return [listFrom, listTo];
   }
 
@@ -97,7 +104,7 @@ const Lists = (props) => {
     }
 
     let newLists = [...lists];
-    console.log("old lists", newLists);
+    // console.log("old lists", newLists);
     if (source.droppableId === destination.droppableId) {
       // const updatedList =
 
@@ -116,7 +123,7 @@ const Lists = (props) => {
       // }
 
       // this.setState(state);
-      console.log("reorder in list", newLists);
+      // console.log("reorder in list", newLists);
     } else {
       const sourceId = source.droppableId.split('-')[1];
       const destId = destination.droppableId.split('-')[1];
@@ -135,20 +142,20 @@ const Lists = (props) => {
       // });
       newLists[sourceId] = result[0];
       newLists[destId] = result[1];
-      console.log("move across lists", newLists);
+      // console.log("move across lists", newLists);
 
     }
-    console.log(newLists);
+    // console.log(newLists);
     setLists(newLists);
   }
 
   const buildList = (num) => {
-    console.log("building list", num);
+    // console.log("building list", num);
     let items = [...lists[num]];
     // console.log("items in buildlist", items);
-    console.log("items", items);
+    // console.log("items", items);
     const itElems = items.map((i, ind) => {
-      console.log("i",i);
+      // console.log("i",i);
       return (
         <Draggable
           key={i}
@@ -197,7 +204,7 @@ const Lists = (props) => {
   // fix issue with deleting things
   const buildLists = () => {
     let output = [];
-    console.log("updated lists", lists);
+    // console.log("updated lists", lists);
     lists.forEach((l, i) => {
       output.push(buildList(i));
     })
