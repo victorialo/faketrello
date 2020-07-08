@@ -32,6 +32,7 @@ const Title = styled.input`
   font-size: 20px;
   letter-spacing: 2px;
   text-shadow: 1px 1px 5px black;
+  width: 100%;
 `
 
 const AddItem = styled.input`
