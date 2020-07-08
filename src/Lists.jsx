@@ -7,13 +7,15 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 // add a title per list
 // add or take away lists
 // change background color(s)
-// display history of movement
+// display history of movement/add/remove
+// actually display
 
 const List = styled.div`
   margin: 10px auto;
   border: 1px black solid;
   background-color: darkslateblue;
   padding: 10px;
+  width: 30%;
   
   .list-0 {
     background-color: darkred;
