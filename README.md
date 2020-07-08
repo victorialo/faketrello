@@ -1,3 +1,21 @@
+#F A K E  T R E L L O
+This was made on stream at http://twitch.tv/riallymundane as interview practice in July 2020.
+
+##To-Do:
+- cool potential features:
+- add a title per list
+- add or take away lists
+- change background color(s)
+- display history of movement/add/remove
+- scroll to accommodate longer submissions
+- check off submissions rather than delete
+- actually show errors when submitting identical or empty submissions
+- save items in local storage so you can refresh the page
+- user authentication????
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

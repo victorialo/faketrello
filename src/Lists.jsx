@@ -3,15 +3,6 @@ import styled from 'styled-components';
 // import { DragDropContext } from 'react-beautiful-dnd';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
-// cool potential features:
-// add a title per list
-// add or take away lists
-// change background color(s)
-// display history of movement/add/remove
-// scroll to accommodate longer submissions
-// check off submissions rather than delete
-// actually show errors when submitting identical or empty submissions
-
 const List = styled.div`
   margin: 10px auto;
   border: 1px black solid;
