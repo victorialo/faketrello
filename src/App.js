@@ -1,9 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 // import logo from './logo.svg';
 import styled from 'styled-components'
 import './App.css';
 import Lists from './Lists';
 
+const NotTrello = styled.div`
+  position: relative;
+  width: 80%;
+  margin: 0 auto;
+`
 
 function App() {
 
@@ -23,8 +28,10 @@ function App() {
       {/*    Learn React*/}
       {/*  </a>*/}
       {/*</header>*/}
-
-      <Lists/>
+      <h1>F A K E &nbsp; T R E L L O</h1>
+      <NotTrello>
+        <Lists/>
+      </NotTrello>
 
 
 
