@@ -2,8 +2,8 @@
 This was made on stream at http://twitch.tv/riallymundane as interview practice in July 2020.
 
 ##To-Do:
-- cool potential features:
-- add a title per list
+Cool potential features:
+- ✔ add a title per list
 - add or take away lists
 - change background color(s)
 - display history of movement/add/remove
@@ -12,6 +12,7 @@ This was made on stream at http://twitch.tv/riallymundane as interview practice 
 - actually show errors when submitting identical or empty submissions
 - save items in local storage so you can refresh the page
 - user authentication????
+- write tests???!!!
 
 
 

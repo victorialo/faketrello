@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from 'styled-components';
 // import { DragDropContext } from 'react-beautiful-dnd';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { numLists } from './constants';
 
 const List = styled.div`
   margin: 10px auto;
@@ -19,6 +20,18 @@ const List = styled.div`
   .list-2 {
     background-color: #61dafb;
   }
+`
+// var randomColor = Math.floor(Math.random()*16777215).toString(16);
+
+const Title = styled.input`
+  color: white;
+  background: none;
+  border-width: 0 0 1px 0;
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  letter-spacing: 2px;
+  text-shadow: 1px 1px 5px black;
 `
 
 const AddItem = styled.input`
@@ -48,8 +61,9 @@ const Lists = (props) => {
   //   return categ;
   // }
 
-  const [lists, setLists] = useState([[],[],[]]);
-  const [input, setInput] = useState(["","",""]);
+  const [lists, setLists] = useState(new Array(numLists).fill(null).map(() => []));
+  const [input, setInput] = useState(new Array(numLists).fill(null).map(() => ""));
+  const [titles, setTitles] = useState(new Array(numLists).fill(null).map(() => ""));
   const [entries, setEntries] = useState(new Set());
 
   const addItem = (e, listNum) => {
@@ -72,6 +86,14 @@ const Lists = (props) => {
     // console.log("updated list", newLists);
     setInput(["","",""]);
     // Number(list)
+  }
+
+  const changeTitle = (e, num) => {
+    e.preventDefault();
+    const index = parseInt(num);
+    let newTitles = [...titles];
+    newTitles[index] = e.currentTarget.value;
+    setTitles(newTitles);
   }
 
   const removeItem = (num, ind) => {
@@ -199,6 +221,7 @@ const Lists = (props) => {
     // console.log("classname", `list-${num}`);
     return (
       <List className={`list-${num}`}>
+        <Title onChange={(e) => changeTitle(e, num)} value={titles[num]} />
       <form onSubmit={(e) => addItem(e, num)}>
         <AddItem type="text" onChange={e => updateInput(e, num)} value={input[num]}/>
       </form>

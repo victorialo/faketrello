@@ -4,6 +4,12 @@ import styled from 'styled-components'
 import './App.css';
 import Lists from './Lists';
 
+const Title = styled.h1`
+  text-shadow: 0px 0px 2px black;
+  letter-spacing: 4px;
+  border-bottom: 1px black solid;
+`
+
 const NotTrello = styled.div`
   position: relative;
   width: 80%;
@@ -30,7 +36,9 @@ function App() {
       {/*    Learn React*/}
       {/*  </a>*/}
       {/*</header>*/}
-      <h1>F A K E &nbsp; T R E L L O</h1>
+      <Title>
+        F A K E &nbsp; T R E L L O
+      </Title>
       <NotTrello>
         <Lists/>
       </NotTrello>
