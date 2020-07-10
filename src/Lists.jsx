@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 // import { DragDropContext } from 'react-beautiful-dnd';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { numLists } from './constants';
@@ -11,15 +11,43 @@ const List = styled.div`
   padding: 10px;
   width: 100%;
   
-  .list-0 {
+  &.list-0 {
     background-color: darkred;
+    //button {
+    //   background-color: darkred;
+    //}
   }
-  .list-1 {
+  &.list-1 {
     background-color: darkkhaki;
+    //button {
+    //   background-color: darkkhaki;
+    //}
   }
-  .list-2 {
+  &.list-2 {
     background-color: #61dafb;
+    //button {
+    //   background-color: #61dafb;
+    //}
   }
+  button { 
+    background: none;
+    //border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    -webkit-appearance: none;
+    
+    //background-color: inherit;
+    background-color: rgba(255,255,255,0.7);
+    border: 1px black solid;
+    
+    &:hover {
+      background-color: rgba(255,255,255,0.6);
+    }
+    &:active {
+      box-shadow: 1px 1px 5px inset;
+    }
+  }
+  
   @media only screen and (min-width: 992px) {
      width: 30%;
   }
@@ -38,10 +66,20 @@ const Title = styled.input`
   text-shadow: 1px 1px 5px black;
   width: 100%;
 `
-
+const Input = styled.form`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: baseline;
+  button {
+    padding: 6px 15px;
+    margin: 0 auto;
+    border-radius: 10px;
+  }
+`
 const AddItem = styled.input`
   margin: 10px;
-  width: 80%;  
+  width: 80%;
+  height: 100%;
 `
 const Items = styled.div`
   margin: 0 auto;
@@ -54,6 +92,7 @@ const Item = styled.div`
   border: 1px black solid;
   background-color: rgba(255, 255, 255, 0.8);
 `
+
 
 // class Lists extends React.Component {
 const Lists = (props) => {
@@ -227,26 +266,26 @@ const Lists = (props) => {
     return (
       <List className={`list-${num}`}>
         <Title onChange={(e) => changeTitle(e, num)} value={titles[num]} />
-      <form onSubmit={(e) => addItem(e, num)}>
-        <AddItem type="text" onChange={e => updateInput(e, num)} value={input[num]}/>
-        <button onSubmit={(e) => addItem(e, num)}>Add</button>
-      </form>
-      <Items>
-        <Droppable droppableId={`list-${num}`}>
-          {(provided, snapshot) => (
-            <div
-              ref={provided.innerRef}
-              className={`list-${num}`}
-              // style={{ backgroundColor: snapshot.isDraggingOver ? 'aliceblue' : 'grey' }}
-              {...provided.droppableProps}
-            >
-              {itElems}
-              {provided.placeholder}
-            </div>
-           )}
-          {/*{itElems}*/}
-        </Droppable>
-      </Items>
+        <Input onSubmit={(e) => addItem(e, num)}>
+          <AddItem type="text" onChange={e => updateInput(e, num)} value={input[num]}/>
+          <button onSubmit={(e) => addItem(e, num)}>Add</button>
+        </Input>
+        <Items>
+          <Droppable droppableId={`list-${num}`}>
+            {(provided, snapshot) => (
+              <div
+                ref={provided.innerRef}
+                className={`list-${num}`}
+                // style={{ backgroundColor: snapshot.isDraggingOver ? 'aliceblue' : 'grey' }}
+                {...provided.droppableProps}
+              >
+                {itElems}
+                {provided.placeholder}
+              </div>
+             )}
+            {/*{itElems}*/}
+          </Droppable>
+        </Items>
     </List>
     );
   }
