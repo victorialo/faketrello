@@ -9,7 +9,6 @@ const List = styled.div`
   border: 1px black solid;
   background-color: darkslateblue;
   padding: 10px;
-  width: 30%;
   
   .list-0 {
     background-color: darkred;
@@ -20,6 +19,10 @@ const List = styled.div`
   .list-2 {
     background-color: #61dafb;
   }
+  @media only screen and (min-width: 1200px) {
+     width: 30%;
+  }
+  
 `
 // var randomColor = Math.floor(Math.random()*16777215).toString(16);
 

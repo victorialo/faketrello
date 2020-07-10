@@ -3,8 +3,8 @@ This was made on stream at http://twitch.tv/riallymundane as interview practice 
 
 ##To-Do:
 Cool potential features:
-- ✔ add a title per list
-- fix widths in mobile
+- ✔ <s>add a title per list</s>
+- <s>fix widths in mobile</s>
 - add or take away lists
 - change background color(s)
 - display history of movement/add/remove
