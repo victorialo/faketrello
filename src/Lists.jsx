@@ -9,6 +9,7 @@ const List = styled.div`
   border: 1px black solid;
   background-color: darkslateblue;
   padding: 10px;
+  width: 100%;
   
   .list-0 {
     background-color: darkred;
@@ -19,7 +20,7 @@ const List = styled.div`
   .list-2 {
     background-color: #61dafb;
   }
-  @media only screen and (min-width: 1200px) {
+  @media only screen and (min-width: 992px) {
      width: 30%;
   }
   
@@ -228,6 +229,7 @@ const Lists = (props) => {
         <Title onChange={(e) => changeTitle(e, num)} value={titles[num]} />
       <form onSubmit={(e) => addItem(e, num)}>
         <AddItem type="text" onChange={e => updateInput(e, num)} value={input[num]}/>
+        <button onSubmit={(e) => addItem(e, num)}>Add</button>
       </form>
       <Items>
         <Droppable droppableId={`list-${num}`}>
