@@ -13,22 +13,18 @@ const List = styled.div`
   
   &.list-0 {
     background-color: darkred;
-    //button {
-    //   background-color: darkred;
-    //}
   }
   &.list-1 {
     background-color: darkkhaki;
-    //button {
-    //   background-color: darkkhaki;
-    //}
   }
   &.list-2 {
     background-color: #61dafb;
-    //button {
-    //   background-color: #61dafb;
-    //}
   }
+  
+  .darker {
+    background-color: rgba(0,0,0,0.4);
+  }
+  
   button { 
     background: none;
     //border: 0;
@@ -37,7 +33,7 @@ const List = styled.div`
     -webkit-appearance: none;
     
     //background-color: inherit;
-    background-color: rgba(255,255,255,0.7);
+    background: rgba(255,255,255,0.7);
     border: 1px black solid;
     
     &:hover {
@@ -105,10 +101,11 @@ const Lists = (props) => {
   //   return categ;
   // }
 
-  const [lists, setLists] = useState(new Array(numLists).fill(null).map(() => []));
-  const [input, setInput] = useState(new Array(numLists).fill(null).map(() => ""));
-  const [titles, setTitles] = useState(new Array(numLists).fill(null).map(() => ""));
+  const [lists, setLists] = useState(Array.from({length: numLists}, () => []));//new Array(numLists).fill(null).map(() => [])
+  const [input, setInput] = useState(Array.from({length:numLists}, () => "")); //new Array(numLists).fill(null).map(() => "")
+  const [titles, setTitles] = useState(Array.from({length: numLists}, () => "")); //new Array(numLists).fill(null).map(() => "")
   const [entries, setEntries] = useState(new Set());
+  // const [listColors, setListColors] = useState(["darkred", "darkkhaki", "#61dafb"]);
 
   const addItem = (e, listNum) => {
     e.preventDefault();
@@ -275,7 +272,7 @@ const Lists = (props) => {
             {(provided, snapshot) => (
               <div
                 ref={provided.innerRef}
-                className={`list-${num}`}
+                className={`darker`}
                 // style={{ backgroundColor: snapshot.isDraggingOver ? 'aliceblue' : 'grey' }}
                 {...provided.droppableProps}
               >
@@ -296,7 +293,7 @@ const Lists = (props) => {
     // console.log("updated lists", lists);
     lists.forEach((l, i) => {
       output.push(buildList(i));
-    })
+    });
     // console.log("new output", output);
     return output;
     // for (let i=0; i<lists.length; i++) {
