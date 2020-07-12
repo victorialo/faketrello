@@ -20,6 +20,7 @@ Cool potential features:
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Drag and drop was implemented using [react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd).
 
 ## Available Scripts
 

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from 'styled-components/macro';
 // import { DragDropContext } from 'react-beautiful-dnd';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { numLists } from './constants';
+// import { numLists } from './constants';
 
 const List = styled.div`
   margin: 10px auto;
@@ -11,15 +11,19 @@ const List = styled.div`
   padding: 10px;
   width: 100%;
   
-  &.list-0 {
-    background-color: darkred;
+  // &.list-0 {
+  //   background-color: ${props => props.color};
+  // }
+  // &.list-1 {
+  //   background-color: ${props => props.color};
+  // }
+  // &.list-2 {
+  //   background-color: ${props => props.color};
+  // }
+  &.list-${props => props.num} {
+    background-color: ${props => props.color};
   }
-  &.list-1 {
-    background-color: darkkhaki;
-  }
-  &.list-2 {
-    background-color: #61dafb;
-  }
+  
   
   .darker {
     background-color: rgba(0,0,0,0.4);
@@ -49,7 +53,6 @@ const List = styled.div`
   }
   
 `
-// var randomColor = Math.floor(Math.random()*16777215).toString(16);
 
 const Title = styled.input`
   color: white;
@@ -88,7 +91,10 @@ const Item = styled.div`
   border: 1px black solid;
   background-color: rgba(255, 255, 255, 0.8);
 `
-
+const AddListButton = styled.button`
+  margin: 0 auto;
+  padding: 10px;
+`
 
 // class Lists extends React.Component {
 const Lists = (props) => {
@@ -101,11 +107,12 @@ const Lists = (props) => {
   //   return categ;
   // }
 
+  const [numLists, setNumLists] = useState(3);
   const [lists, setLists] = useState(Array.from({length: numLists}, () => []));//new Array(numLists).fill(null).map(() => [])
   const [input, setInput] = useState(Array.from({length:numLists}, () => "")); //new Array(numLists).fill(null).map(() => "")
   const [titles, setTitles] = useState(Array.from({length: numLists}, () => "")); //new Array(numLists).fill(null).map(() => "")
   const [entries, setEntries] = useState(new Set());
-  // const [listColors, setListColors] = useState(["darkred", "darkkhaki", "#61dafb"]);
+  const [listColors, setListColors] = useState(["darkred", "darkkhaki", "#61dafb"]);
 
   const addItem = (e, listNum) => {
     e.preventDefault();
@@ -230,6 +237,26 @@ const Lists = (props) => {
     setLists(newLists);
   }
 
+  const randomColor = () => {
+    return "#" + Math.floor(Math.random()*16777215).toString(16).toString();
+  }
+  const addList = () => {
+    setNumLists(numLists+1);
+    let newLists = [...lists];
+    newLists.push([]);
+    let newInput = [...input];
+    newInput.push("");
+    let newTitles = [...titles];
+    newTitles.push("");
+    let newListColors = [...listColors];
+    newListColors.push(randomColor());
+    console.log(newListColors);
+    setLists(newLists);
+    setInput(newInput);
+    setTitles(newTitles);
+    setListColors(newListColors);
+  }
+
   const buildList = (num) => {
     // console.log("building list", num);
     let items = [...lists[num]];
@@ -261,7 +288,7 @@ const Lists = (props) => {
     // console.log("updating input in ", num);
     // console.log("classname", `list-${num}`);
     return (
-      <List className={`list-${num}`}>
+      <List className={`list-${num}`} num={num} color={listColors[num]} >
         <Title onChange={(e) => changeTitle(e, num)} value={titles[num]} />
         <Input onSubmit={(e) => addItem(e, num)}>
           <AddItem type="text" onChange={e => updateInput(e, num)} value={input[num]}/>
@@ -314,6 +341,7 @@ const Lists = (props) => {
   return (
     <DragDropContext onDragEnd={drop}>
       {buildLists()}
+      <AddListButton onClick={addList}>+</AddListButton>
     </DragDropContext>
   );
 }
