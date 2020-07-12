@@ -95,9 +95,12 @@ const Item = styled.div`
 `
 const Text = styled.div`
   white-space: nowrap;
-  //overflow: hidden;
-  overflow: auto;
-  //text-overflow: ellipsis;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  &:hover {
+    overflow: auto;
+    text-overflow: initial;
+  }
 `
 const AddListButton = styled.button`
   margin: 0 auto;
@@ -106,6 +109,9 @@ const AddListButton = styled.button`
 
 const DeleteButton = styled.button`
   float: right;
+`
+const SelectColor = styled.input`
+  float:left;
 `
 
 // class Lists extends React.Component {
@@ -126,6 +132,9 @@ const Lists = (props) => {
   const [titles, setTitles] = useState(['To-Do', 'In Progress', 'Done'])
   const [entries, setEntries] = useState(new Set());
   const [listColors, setListColors] = useState(["darkred", "darkkhaki", "#61dafb"]);
+
+  // localStorage.setItem('items', JSON.stringify(itemsArray))
+  // const data = JSON.parse(localStorage.getItem('items'))
 
   const addItem = (e, listNum) => {
     e.preventDefault();
@@ -264,7 +273,6 @@ const Lists = (props) => {
     newTitles.push("");
     let newListColors = [...listColors];
     newListColors.push(randomColor());
-    console.log(newListColors);
     setLists(newLists);
     setInput(newInput);
     setTitles(newTitles);
@@ -281,10 +289,16 @@ const Lists = (props) => {
     newTitles.splice(num, 1);
     let newListColors = [...listColors];
     newListColors.splice(num, 1);
-    // console.log(newListColors);
     setLists(newLists);
     setInput(newInput);
     setTitles(newTitles);
+    setListColors(newListColors);
+  }
+
+  const changeColor = (e,num) => {
+    const color = e.target.value;
+    let newListColors = [...listColors];
+    newListColors[num] = color;
     setListColors(newListColors);
   }
 
@@ -321,6 +335,7 @@ const Lists = (props) => {
     return (
       <List className={`list-${num}`} num={num} color={listColors[num]} >
         <DeleteButton onClick={()=>deleteList(num)}>x</DeleteButton>
+        <SelectColor type={"color"} value={listColors[num]} onChange={(e) => changeColor(e,num)}/>
         <Title onChange={(e) => changeTitle(e, num)} value={titles[num]} />
         <Input onSubmit={(e) => addItem(e, num)}>
           <AddItem type="text" onChange={e => updateInput(e, num)} value={input[num]}/>
