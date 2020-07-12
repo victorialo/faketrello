@@ -90,6 +90,14 @@ const Item = styled.div`
   padding: 5px;
   border: 1px black solid;
   background-color: rgba(255, 255, 255, 0.8);
+  position: relative;
+  z-index: 2;
+`
+const Text = styled.div`
+  white-space: nowrap;
+  //overflow: hidden;
+  overflow: auto;
+  //text-overflow: ellipsis;
 `
 const AddListButton = styled.button`
   margin: 0 auto;
@@ -125,7 +133,7 @@ const Lists = (props) => {
     // const input = e.target.value();
     // console.log("input", num, input[num]);
     let item = input[num];
-    // console.log("input", item);
+    console.log("input", item);
     if (item.length < 1 || entries.has(item)) {//lists[listNum].includes(input[num])) {
       console.error("bad input - empty or duplicate");
       return;
@@ -300,7 +308,7 @@ const Lists = (props) => {
               {...provided.dragHandleProps}
             >
               <Item id={i}>
-                {i}
+                <Text>{i}</Text>
                 <button onClick={()=> removeItem(num, ind)}>x</button>
               </Item>
             </div>

@@ -5,14 +5,14 @@ This was made on stream at http://twitch.tv/riallymundane as interview practice 
 Cool potential features:
 - ✔ <s>add a title per list</s>
 - <s>fix widths in mobile</s>
-- add or take away lists
+- <s>add or take away lists</s>
 - change background color(s)
 - display history of movement/add/remove
-- scroll to accommodate longer submissions
+- <s>scroll to accommodate longer submissions</s>
 - check off submissions rather than delete
 - actually show errors when submitting identical or empty submissions
 - save items in local storage so you can refresh the page
-- allow adding more details on click
+- allow adding more details on click - including properly addressing overly long submissions
 - make a tower of hanabi game with this
 - user authentication????
 - write tests???!!!
