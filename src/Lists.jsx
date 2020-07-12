@@ -96,6 +96,10 @@ const AddListButton = styled.button`
   padding: 10px;
 `
 
+const DeleteButton = styled.button`
+  float: right;
+`
+
 // class Lists extends React.Component {
 const Lists = (props) => {
   // initializeCateg = () => {
@@ -110,7 +114,8 @@ const Lists = (props) => {
   const [numLists, setNumLists] = useState(3);
   const [lists, setLists] = useState(Array.from({length: numLists}, () => []));//new Array(numLists).fill(null).map(() => [])
   const [input, setInput] = useState(Array.from({length:numLists}, () => "")); //new Array(numLists).fill(null).map(() => "")
-  const [titles, setTitles] = useState(Array.from({length: numLists}, () => "")); //new Array(numLists).fill(null).map(() => "")
+  // const [titles, setTitles] = useState(Array.from({length: numLists}, () => "")); //new Array(numLists).fill(null).map(() => "")
+  const [titles, setTitles] = useState(['To-Do', 'In Progress', 'Done'])
   const [entries, setEntries] = useState(new Set());
   const [listColors, setListColors] = useState(["darkred", "darkkhaki", "#61dafb"]);
 
@@ -120,6 +125,7 @@ const Lists = (props) => {
     // const input = e.target.value();
     // console.log("input", num, input[num]);
     let item = input[num];
+    // console.log("input", item);
     if (item.length < 1 || entries.has(item)) {//lists[listNum].includes(input[num])) {
       console.error("bad input - empty or duplicate");
       return;
@@ -257,6 +263,23 @@ const Lists = (props) => {
     setListColors(newListColors);
   }
 
+  const deleteList = (num) => {
+    setNumLists(numLists-1);
+    let newLists = [...lists];
+    newLists.splice(num, 1);
+    let newInput = [...input];
+    newInput.splice(num, 1);
+    let newTitles = [...titles];
+    newTitles.splice(num, 1);
+    let newListColors = [...listColors];
+    newListColors.splice(num, 1);
+    // console.log(newListColors);
+    setLists(newLists);
+    setInput(newInput);
+    setTitles(newTitles);
+    setListColors(newListColors);
+  }
+
   const buildList = (num) => {
     // console.log("building list", num);
     let items = [...lists[num]];
@@ -289,6 +312,7 @@ const Lists = (props) => {
     // console.log("classname", `list-${num}`);
     return (
       <List className={`list-${num}`} num={num} color={listColors[num]} >
+        <DeleteButton onClick={()=>deleteList(num)}>x</DeleteButton>
         <Title onChange={(e) => changeTitle(e, num)} value={titles[num]} />
         <Input onSubmit={(e) => addItem(e, num)}>
           <AddItem type="text" onChange={e => updateInput(e, num)} value={input[num]}/>
