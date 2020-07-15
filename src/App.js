@@ -10,6 +10,7 @@ const Title = styled.h1`
   border-bottom: 1px black solid;
   margin: 0;
   padding: 10px;
+  cursor: pointer;
 
   &.darkTitle {
     color: white;
