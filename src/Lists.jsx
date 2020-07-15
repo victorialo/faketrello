@@ -11,19 +11,9 @@ const List = styled.div`
   padding: 10px;
   width: 100%;
   
-  // &.list-0 {
-  //   background-color: ${props => props.color};
-  // }
-  // &.list-1 {
-  //   background-color: ${props => props.color};
-  // }
-  // &.list-2 {
-  //   background-color: ${props => props.color};
-  // }
   &.list-${props => props.num} {
     background-color: ${props => props.color};
   }
-  
   
   .darker {
     background-color: rgba(0,0,0,0.4);
@@ -31,7 +21,6 @@ const List = styled.div`
   
   button { 
     background: none;
-    //border: 0;
     border-radius: 0;
     box-shadow: none;
     -webkit-appearance: none;
@@ -54,6 +43,12 @@ const List = styled.div`
   
 `
 
+const Error = styled.div`
+  background-color: yellow;
+  width: 100%;
+  border: 1px solid black;
+  padding: 10px;
+`
 const Title = styled.input`
   color: white;
   background: none;
@@ -116,14 +111,6 @@ const SelectColor = styled.input`
 
 // class Lists extends React.Component {
 const Lists = (props) => {
-  // initializeCateg = () => {
-  //   // let categ = //new Map();
-  //   // categ.set('one', []);
-  //   // categ.set('two', []);
-  //   // categ.set('three', []);
-  //   let categ = [[], [], []];
-  //   return categ;
-  // }
 
   const [numLists, setNumLists] = useState(3);
   const [lists, setLists] = useState(Array.from({length: numLists}, () => []));//new Array(numLists).fill(null).map(() => [])
@@ -132,6 +119,7 @@ const Lists = (props) => {
   const [titles, setTitles] = useState(['To-Do', 'In Progress', 'Done'])
   const [entries, setEntries] = useState(new Set());
   const [listColors, setListColors] = useState(["darkred", "darkkhaki", "#61dafb"]);
+  const [errors, setErrors] = useState("");
 
   // localStorage.setItem('items', JSON.stringify(itemsArray))
   // const data = JSON.parse(localStorage.getItem('items'))
@@ -140,13 +128,18 @@ const Lists = (props) => {
     e.preventDefault();
     const num = parseInt(listNum);
     // const input = e.target.value();
-    // console.log("input", num, input[num]);
     let item = input[num];
-    console.log("input", item);
+    // console.log("input", item);
     if (item.length < 1 || entries.has(item)) {//lists[listNum].includes(input[num])) {
-      console.error("bad input - empty or duplicate");
+      if (item.length < 1) {
+        console.error("bad input - empty");
+        setErrors("empty");
+      } else if (entries.has(item)) {
+        console.error("bad input - duplicate");
+        setErrors("duplicate");
+      }
       return;
-    };
+    }
     let newLists = [...lists];
     let current = newLists[num];
     current.push(item);
@@ -187,6 +180,7 @@ const Lists = (props) => {
     // setInput(e.target.value);
     let newInput = [...input];
     newInput[num] = e.target.value;
+    setErrors("");
     setInput(newInput);
   }
 
@@ -380,13 +374,24 @@ const Lists = (props) => {
   //   return lists[id];
   // }
 
-
+  const buildError = () => {
+    console.log("error", errors);
+    switch (errors) {
+      case 'empty':
+        return <Error>Your input is empty - please fill in something!</Error>
+      case 'duplicate':
+        return <Error>Your input {input} is already found in a list - please drag that over or use another input!</Error>
+      default:
+        return;
+    }
+  }
 
   // useEffect(buildLists, [lists]);
 
 
   return (
     <DragDropContext onDragEnd={drop}>
+      {buildError()}
       {buildLists()}
       <AddListButton onClick={addList}>+</AddListButton>
     </DragDropContext>

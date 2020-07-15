@@ -10,7 +10,7 @@ Cool potential features:
 - display history of movement/add/remove
 - <s>scroll to accommodate longer submissions</s>
 - check off submissions rather than delete
-- actually show errors when submitting identical or empty submissions
+- <s>actually show errors when submitting identical or empty submissions</s>
 - drag and drop lists
 - save items in local storage so you can refresh the page
 - allow adding more details on click - including properly addressing overly long submissions
