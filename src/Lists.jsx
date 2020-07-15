@@ -131,7 +131,7 @@ const Lists = () => {
   const [listColors, setListColors] = useState(
     localStorage.getItem('colors')
       ? JSON.parse(localStorage.getItem('colors'))
-      : ["darkred", "darkkhaki", "#61dafb"]);
+      : ["#8b0000", "#bdb76b", "#61dafb"]);
   const [errors, setErrors] = useState("");
 
   // localStorage.setItem('items', JSON.stringify(itemsArray))
@@ -328,6 +328,7 @@ const Lists = () => {
               style={{ backgroundColor: snapshot.isDraggingOver ? 'aliceblue' : 'grey' }}
               {...provided.draggableProps}
               {...provided.dragHandleProps}
+
             >
               <Item id={i}>
                 <Text>{i}</Text>
@@ -389,7 +390,6 @@ const Lists = () => {
   // }
 
   const buildError = () => {
-    console.log("error", errors);
     switch (errors) {
       case 'empty':
         return <Error>Your input is empty - please fill in something!</Error>
@@ -404,10 +404,6 @@ const Lists = () => {
   useEffect(() => {
     localStorage.setItem('lists', JSON.stringify(lists));
   }, [lists]);
-  // useEffect(() => {
-  //   console.log("logging entries", entries);
-  //   localStorage.setItem('entries', JSON.stringify(entries));
-  // }, [entries]);
   useEffect(() => {
     localStorage.setItem('titles', JSON.stringify(titles));
   }, [titles]);

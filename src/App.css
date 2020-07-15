@@ -1,9 +1,15 @@
-html {
+html, body {
   margin: 0;
   padding: 0;
+
 }
 .App {
   text-align: center;
+}
+.dark {
+  background-color: #383728;
+  width: 100vw;
+  height: 100vh;
 }
 
 .App-logo {

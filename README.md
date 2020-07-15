@@ -14,9 +14,14 @@ Cool potential features:
 - drag and drop lists
 - <s>save items in local storage so you can refresh the page</s>
 - allow adding more details on click - including properly addressing overly long submissions & editing
+- dark mode!
+- confirm delete
+- undo delete?!
+- keyboard shortcuts
 - make a tower of hanabi game with this
-- user authentication????
+- user authentication???? & backend
 - write tests???!!!
+- probably refactor at some point
 
 
 
