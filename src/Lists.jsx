@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import styled from 'styled-components/macro';
 // import { DragDropContext } from 'react-beautiful-dnd';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import {DragDropContext, Draggable, Droppable} from 'react-beautiful-dnd';
 // import { numLists } from './constants';
 
 const List = styled.div`
@@ -110,15 +110,28 @@ const SelectColor = styled.input`
 `
 
 // class Lists extends React.Component {
-const Lists = (props) => {
+const Lists = () => {
 
   const [numLists, setNumLists] = useState(3);
-  const [lists, setLists] = useState(Array.from({length: numLists}, () => []));//new Array(numLists).fill(null).map(() => [])
+  const [lists, setLists] = useState(
+    localStorage.getItem('lists')
+      ? JSON.parse(localStorage.getItem('lists'))
+      : Array.from({length: numLists}, () => []));//new Array(numLists).fill(null).map(() => [])
   const [input, setInput] = useState(Array.from({length:numLists}, () => "")); //new Array(numLists).fill(null).map(() => "")
   // const [titles, setTitles] = useState(Array.from({length: numLists}, () => "")); //new Array(numLists).fill(null).map(() => "")
-  const [titles, setTitles] = useState(['To-Do', 'In Progress', 'Done'])
-  const [entries, setEntries] = useState(new Set());
-  const [listColors, setListColors] = useState(["darkred", "darkkhaki", "#61dafb"]);
+  const [titles, setTitles] = useState(
+    localStorage.getItem('titles')
+      ? JSON.parse(localStorage.getItem('titles'))
+      : ['To-Do', 'In Progress', 'Done'])
+  const [entries, setEntries] = useState(
+    // localStorage.getItem('entries')
+    //   ? new Set(JSON.parse(localStorage.getItem('entries')))
+    new Set(lists.reduce((a, b) => a.concat(b), []))
+    || new Set());
+  const [listColors, setListColors] = useState(
+    localStorage.getItem('colors')
+      ? JSON.parse(localStorage.getItem('colors'))
+      : ["darkred", "darkkhaki", "#61dafb"]);
   const [errors, setErrors] = useState("");
 
   // localStorage.setItem('items', JSON.stringify(itemsArray))
@@ -130,6 +143,7 @@ const Lists = (props) => {
     // const input = e.target.value();
     let item = input[num];
     // console.log("input", item);
+    console.log("entries", entries);
     if (item.length < 1 || entries.has(item)) {//lists[listNum].includes(input[num])) {
       if (item.length < 1) {
         console.error("bad input - empty");
@@ -387,6 +401,19 @@ const Lists = (props) => {
   }
 
   // useEffect(buildLists, [lists]);
+  useEffect(() => {
+    localStorage.setItem('lists', JSON.stringify(lists));
+  }, [lists]);
+  // useEffect(() => {
+  //   console.log("logging entries", entries);
+  //   localStorage.setItem('entries', JSON.stringify(entries));
+  // }, [entries]);
+  useEffect(() => {
+    localStorage.setItem('titles', JSON.stringify(titles));
+  }, [titles]);
+  useEffect(() => {
+    localStorage.setItem('colors', JSON.stringify(listColors));
+  }, [listColors]);
 
 
   return (

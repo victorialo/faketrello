@@ -12,8 +12,8 @@ Cool potential features:
 - check off submissions rather than delete
 - <s>actually show errors when submitting identical or empty submissions</s>
 - drag and drop lists
-- save items in local storage so you can refresh the page
-- allow adding more details on click - including properly addressing overly long submissions
+- <s>save items in local storage so you can refresh the page</s>
+- allow adding more details on click - including properly addressing overly long submissions & editing
 - make a tower of hanabi game with this
 - user authentication????
 - write tests???!!!
