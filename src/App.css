@@ -9,7 +9,7 @@ html, body {
 .dark {
   background-color: #383728;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .App-logo {

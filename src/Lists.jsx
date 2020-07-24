@@ -109,14 +109,12 @@ const SelectColor = styled.input`
   float:left;
 `
 
-// class Lists extends React.Component {
 const Lists = () => {
+// class Lists extends React.Component {
 
-  const [numLists, setNumLists] = useState(3);
-  const [lists, setLists] = useState(
-    localStorage.getItem('lists')
-      ? JSON.parse(localStorage.getItem('lists'))
-      : Array.from({length: numLists}, () => []));//new Array(numLists).fill(null).map(() => [])
+  const storedLists = localStorage.getItem('lists') ? JSON.parse(localStorage.getItem('lists')) : ["", "", ""]; // assumes 3 lists if no stored lists; Array.from({length: numLists}, () => []));
+  const [numLists, setNumLists] = useState(storedLists.length || 3);
+  const [lists, setLists] = useState(storedLists);//new Array(numLists).fill(null).map(() => [])
   const [input, setInput] = useState(Array.from({length:numLists}, () => "")); //new Array(numLists).fill(null).map(() => "")
   // const [titles, setTitles] = useState(Array.from({length: numLists}, () => "")); //new Array(numLists).fill(null).map(() => "")
   const [titles, setTitles] = useState(
@@ -162,7 +160,8 @@ const Lists = () => {
     entries.add(item);
     setEntries(entries);
     // console.log("updated list", newLists);
-    setInput(["","",""]);
+    const newInput = Array.from({length:numLists}, () => "");
+    setInput(newInput);
     // Number(list)
   }
 
@@ -175,6 +174,7 @@ const Lists = () => {
   }
 
   const removeItem = (num, ind) => {
+    window.confirm("Are you sure you would like to delete this item?");
     const list = parseInt(num);
     let newLists = [...lists];
     let current = newLists[list];
@@ -288,6 +288,7 @@ const Lists = () => {
   }
 
   const deleteList = (num) => {
+    window.confirm("Are you sure you would like to delete this list?");
     setNumLists(numLists-1);
     let newLists = [...lists];
     newLists.splice(num, 1);

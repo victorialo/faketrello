@@ -8,15 +8,15 @@ Cool potential features:
 - <s>add or take away lists</s>
 - <s>change background color(s)</s>
 - display history of movement/add/remove
+- undo delete?!
 - <s>scroll to accommodate longer submissions</s>
 - check off submissions rather than delete
 - <s>actually show errors when submitting identical or empty submissions</s>
 - drag and drop lists
 - <s>save items in local storage so you can refresh the page</s>
 - allow adding more details on click - including properly addressing overly long submissions & editing
-- dark mode!
-- confirm delete
-- undo delete?!
+- <s>dark mode!</s>
+- <s>confirm delete</s>
 - keyboard shortcuts
 - make a tower of hanabi game with this
 - user authentication???? & backend
