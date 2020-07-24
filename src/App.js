@@ -17,7 +17,6 @@ const Title = styled.h1`
     text-shadow: 0 0 2px white;
   }
 `
-
 const NotTrello = styled.div`
   position: relative;
   width: 80%;
@@ -25,8 +24,6 @@ const NotTrello = styled.div`
   display: flex;
   flex-wrap: wrap;
 `
-
-
 
 function App() {
   const [dark, setDark] = useState((localStorage.getItem('dark') === 'true') || false);
@@ -58,8 +55,6 @@ function App() {
       <NotTrello>
         <Lists/>
       </NotTrello>
-
-
 
     </div>
   );
