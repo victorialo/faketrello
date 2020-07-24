@@ -174,7 +174,8 @@ const Lists = () => {
   }
 
   const removeItem = (num, ind) => {
-    window.confirm("Are you sure you would like to delete this item?");
+    const confirmation = window.confirm("Are you sure you would like to delete this item?");
+    if (!confirmation) return;
     const list = parseInt(num);
     let newLists = [...lists];
     let current = newLists[list];
@@ -288,7 +289,8 @@ const Lists = () => {
   }
 
   const deleteList = (num) => {
-    window.confirm("Are you sure you would like to delete this list?");
+    const confirmation = window.confirm("Are you sure you would like to delete this list?");
+    if (!confirmation) return;
     setNumLists(numLists-1);
     let newLists = [...lists];
     newLists.splice(num, 1);
