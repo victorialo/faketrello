@@ -14,7 +14,8 @@ Cool potential features:
 - <s>actually show errors when submitting identical or empty submissions</s>
 - drag and drop lists
 - <s>save items in local storage so you can refresh the page</s>
-- allow adding more details on click - including properly addressing overly long submissions & editing
+- allow adding more details on click - including properly addressing overly long submissions
+- <s>editing</s>
 - <s>dark mode!</s>
 - <s>confirm delete</s>
 - keyboard shortcuts

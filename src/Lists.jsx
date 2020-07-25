@@ -88,13 +88,19 @@ const Item = styled.div`
   position: relative;
   z-index: 2;
 `
-const Text = styled.div`
+const Text = styled.input`
+  width: 100%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  &:hover {
-    overflow: auto;
-    text-overflow: initial;
+  background: none;
+  border: none;
+  //&:hover {
+  //  overflow: auto;
+  //  text-overflow: initial;
+  //}
+  &:active {
+    border: none;
   }
 `
 const AddListButton = styled.button`
@@ -141,7 +147,7 @@ const Lists = () => {
     // const input = e.target.value();
     let item = input[num];
     // console.log("input", item);
-    console.log("entries", entries);
+    // console.log("entries", entries);
     if (item.length < 1 || entries.has(item)) {//lists[listNum].includes(input[num])) {
       if (item.length < 1) {
         console.error("bad input - empty");
@@ -313,6 +319,17 @@ const Lists = () => {
     setListColors(newListColors);
   }
 
+  const updateItem = (e, num, ind) => {
+    const old = lists[num][ind];
+    const newItem = e.target.value;
+    entries.delete(old);
+    entries.add(newItem);
+    setEntries(entries);
+    let newLists = [...lists];
+    newLists[num][ind] = newItem;
+    setLists(newLists);
+  }
+
   const buildList = (num) => {
     // console.log("building list", num);
     let items = [...lists[num]];
@@ -334,7 +351,7 @@ const Lists = () => {
 
             >
               <Item id={i}>
-                <Text>{i}</Text>
+                <Text value={i} onChange={(e) => updateItem(e, num, ind)}/>
                 <button onClick={()=> removeItem(num, ind)}>x</button>
               </Item>
             </div>
