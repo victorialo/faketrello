@@ -122,6 +122,7 @@ const Lists = () => {
   const [numLists, setNumLists] = useState(storedLists.length || 3);
   const [lists, setLists] = useState(storedLists);//new Array(numLists).fill(null).map(() => [])
   const [input, setInput] = useState(Array.from({length:numLists}, () => "")); //new Array(numLists).fill(null).map(() => "")
+  const [newItem, setNewItem] = useState([]);
   // const [titles, setTitles] = useState(Array.from({length: numLists}, () => "")); //new Array(numLists).fill(null).map(() => "")
   const [titles, setTitles] = useState(
     localStorage.getItem('titles')
@@ -320,14 +321,18 @@ const Lists = () => {
   }
 
   const updateItem = (e, num, ind) => {
-    const old = lists[num][ind];
-    const newItem = e.target.value;
+    const [item, old] = newItem;
     entries.delete(old);
-    entries.add(newItem);
+    entries.add(item);
     setEntries(entries);
     let newLists = [...lists];
-    newLists[num][ind] = newItem;
+    newLists[num][ind] = item;
     setLists(newLists);
+  }
+
+  const display = (orig) => {
+    const [item, old] = newItem;
+    return (old === orig) ? item : orig;
   }
 
   const buildList = (num) => {
@@ -351,7 +356,7 @@ const Lists = () => {
 
             >
               <Item id={i}>
-                <Text value={i} onChange={(e) => updateItem(e, num, ind)}/>
+                <Text value={display(i)} onChange={e => setNewItem([e.target.value, i])} onBlur={(e) => updateItem(e, num, ind)}/>
                 <button onClick={()=> removeItem(num, ind)}>x</button>
               </Item>
             </div>

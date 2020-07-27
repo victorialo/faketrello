@@ -18,11 +18,13 @@ Cool potential features:
 - <s>editing</s>
 - <s>dark mode!</s>
 - <s>confirm delete</s>
+- larger drag handle
 - keyboard shortcuts
 - make a tower of hanabi game with this
 - user authentication???? & backend
 - write tests???!!!
 - probably refactor at some point
+- electron/PWA app??
 
 
 
