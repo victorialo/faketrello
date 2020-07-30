@@ -287,7 +287,7 @@ const Lists = () => {
     let newInput = [...input];
     newInput.push("");
     let newTitles = [...titles];
-    newTitles.push("");
+    newTitles.push("sparkly new list");
     let newListColors = [...listColors];
     newListColors.push(randomColor());
     setLists(newLists);
@@ -357,7 +357,7 @@ const Lists = () => {
 
             >
               <Item id={i}>
-                <Text value={display(i)} onChange={e => setNewItem([e.target.value, i])} onBlur={(e) => updateItem(e, num, ind)}/>
+                <Text value={display(i)} onClick={() => setNewItem([i,i])} onChange={e => setNewItem([e.target.value, i])} onBlur={(e) => updateItem(e, num, ind)}/>
                 <button onClick={()=> removeItem(num, ind)}>x</button>
               </Item>
             </div>
