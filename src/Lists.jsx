@@ -82,7 +82,7 @@ const Item = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 2px auto;
-  padding: 5px;
+  padding: 10px 15px;
   border: 1px black solid;
   background-color: rgba(255, 255, 255, 0.8);
   position: relative;
@@ -95,6 +95,7 @@ const Text = styled.input`
   text-overflow: ellipsis;
   background: none;
   border: none;
+  padding: 0;
   //&:hover {
   //  overflow: auto;
   //  text-overflow: initial;
