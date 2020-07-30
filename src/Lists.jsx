@@ -119,7 +119,7 @@ const SelectColor = styled.input`
 const Lists = () => {
 // class Lists extends React.Component {
 
-  const storedLists = localStorage.getItem('lists') ? JSON.parse(localStorage.getItem('lists')) : ["", "", ""]; // assumes 3 lists if no stored lists; Array.from({length: numLists}, () => []));
+  const storedLists = localStorage.getItem('lists') ? JSON.parse(localStorage.getItem('lists')) : [[], [], []]; // assumes 3 lists if no stored lists; Array.from({length: numLists}, () => []));
   const [numLists, setNumLists] = useState(storedLists.length || 3);
   const [lists, setLists] = useState(storedLists);//new Array(numLists).fill(null).map(() => [])
   const [input, setInput] = useState(Array.from({length:numLists}, () => "")); //new Array(numLists).fill(null).map(() => "")
