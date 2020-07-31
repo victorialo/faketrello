@@ -9,6 +9,7 @@ Cool potential features:
 - <s>change background color(s)</s>
 - display history of movement/add/remove
 - undo delete?!
+- multi delete
 - <s>scroll to accommodate longer submissions</s>
 - check off submissions rather than delete
 - <s>actually show errors when submitting identical or empty submissions</s>
@@ -25,6 +26,8 @@ Cool potential features:
 - write tests???!!!
 - probably refactor at some point
 - electron/PWA app??
+- new tab chrome extension
+- import/export tasks
 
 
 

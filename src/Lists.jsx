@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import styled from 'styled-components/macro';
 // import { DragDropContext } from 'react-beautiful-dnd';
 import {DragDropContext, Draggable, Droppable} from 'react-beautiful-dnd';
+// import ContentEditable from 'react-contenteditable';
 // import { numLists } from './constants';
 
 const List = styled.div`
@@ -103,6 +104,10 @@ const Text = styled.input`
   &:active {
     border: none;
   }
+  //&.hidden {
+  //  display: none;
+  //  
+  //}
 `
 const AddListButton = styled.button`
   margin: 0 auto;
@@ -354,10 +359,11 @@ const Lists = () => {
               style={{ backgroundColor: snapshot.isDraggingOver ? 'aliceblue' : 'grey' }}
               {...provided.draggableProps}
               {...provided.dragHandleProps}
-
             >
               <Item id={i}>
-                <Text value={display(i)} onClick={() => setNewItem([i,i])} onChange={e => setNewItem([e.target.value, i])} onBlur={(e) => updateItem(e, num, ind)}/>
+                {/*<ContentEditable onClick={() => setNewItem([i, i])} onChange={e => setNewItem([e.target.value, i])} onBlur={(e) => updateItem(e, num, ind)} html={display(i)}/>*/}
+                <Text onClick={() => setNewItem([i, i])} onChange={e => setNewItem([e.target.value, i])} onBlur={(e) => updateItem(e, num, ind)} value={display(i)}/>
+                {/*<Text>{display(i)}</Text>*/}
                 <button onClick={()=> removeItem(num, ind)}>x</button>
               </Item>
             </div>
