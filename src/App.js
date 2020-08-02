@@ -11,6 +11,7 @@ const Title = styled.h1`
   margin: 0;
   padding: 10px;
   cursor: pointer;
+  font-family: 'Playfair Display', serif;
 
   &.darkTitle {
     color: white;
@@ -23,6 +24,7 @@ const NotTrello = styled.div`
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
+  font-family: 'Merriweather', serif;
 `
 
 function App() {
@@ -85,7 +87,8 @@ function App() {
       {/*  </a>*/}
       {/*</header>*/}
       <Title className={!!dark ? 'darkTitle' : ''} onClick={toggleDarkMode}>
-        F A K E &nbsp; T R E L L O
+        {/*F A K E &nbsp; T R E L L O*/}
+        T R E L L N O
       </Title>
       <NotTrello>
         {/*<Lists key={stateVersion}/>*/}

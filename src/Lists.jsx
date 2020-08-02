@@ -60,6 +60,7 @@ const Title = styled.input`
   letter-spacing: 2px;
   text-shadow: 1px 1px 5px black;
   width: 100%;
+  font-family: 'Merriweather', serif;
 `
 const Input = styled.form`
   display: flex;
@@ -69,12 +70,14 @@ const Input = styled.form`
     padding: 6px 15px;
     margin: 0 auto;
     border-radius: 10px;
+    font-family: 'Merriweather', serif;
   }
 `
 const AddItem = styled.input`
   margin: 10px;
   width: 80%;
   height: 100%;
+  font-family: 'Merriweather', serif;
 `
 const Items = styled.div`
   margin: 0 auto;
@@ -89,14 +92,15 @@ const Item = styled.div`
   position: relative;
   z-index: 2;
 `
-const Text = styled.input`
-  width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  background: none;
-  border: none;
-  padding: 0;
+const Text = styled.div`
+  width: 95%;
+  //white-space: nowrap;
+  //overflow: hidden;
+  //flex-wrap: wrap;
+  //text-overflow: ellipsis;
+  //background: none;
+  //border: none;
+  font-size: 13px;
   //&:hover {
   //  overflow: auto;
   //  text-overflow: initial;
@@ -326,8 +330,9 @@ const Lists = () => {
     setListColors(newListColors);
   }
 
-  const updateItem = (e, num, ind) => {
-    const [item, old] = newItem;
+  const updateItem = (e, num, ind, old) => {
+    // const [item, old] = newItem;
+    const item = e.target.textContent;
     entries.delete(old);
     entries.add(item);
     setEntries(entries);
@@ -362,7 +367,8 @@ const Lists = () => {
             >
               <Item id={i}>
                 {/*<ContentEditable onClick={() => setNewItem([i, i])} onChange={e => setNewItem([e.target.value, i])} onBlur={(e) => updateItem(e, num, ind)} html={display(i)}/>*/}
-                <Text onClick={() => setNewItem([i, i])} onChange={e => setNewItem([e.target.value, i])} onBlur={(e) => updateItem(e, num, ind)} value={display(i)}/>
+                {/*<Text onClick={() => setNewItem([i, i])} onChange={e => setNewItem([e.target.value, i])} onBlur={(e) => updateItem(e, num, ind)} value={display(i)}/>*/}
+                <Text contentEditable="true" onClick={() => setNewItem([i, i])} onChange={e => setNewItem([e.target.value, i])} onBlur={(e) => updateItem(e, num, ind)}>{display(i)}</Text>
                 {/*<Text>{display(i)}</Text>*/}
                 <button onClick={()=> removeItem(num, ind)}>x</button>
               </Item>

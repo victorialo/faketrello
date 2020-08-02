@@ -27,7 +27,7 @@ Cool potential features:
 - probably refactor at some point
 - electron/PWA app??
 - new tab chrome extension
-- import/export tasks
+- <s>import/export tasks</s>
 
 
 
