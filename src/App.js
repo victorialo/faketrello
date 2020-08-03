@@ -12,6 +12,7 @@ const Title = styled.h1`
   padding: 10px;
   cursor: pointer;
   font-family: 'Playfair Display', serif;
+  font-size: 40px;
 
   &.darkTitle {
     color: white;

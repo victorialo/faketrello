@@ -1,15 +1,15 @@
 {
   "short_name": "TrellNo",
-  "name": "Fake Trello as New Tab",
-  "version": "1.0",
+  "name": "TrellNo as New Tab",
+  "version": "0.0.1",
   "description": "TrellNo AKA Fake Trello by riallymundane@twitch",
   "manifest_version": 2,
   "permissions": ["storage"],
   "icons": {
-    "16": "favicon.ico",
-    "32": "favicon.ico",
-    "48": "favicon.ico",
-    "128": "favicon.ico"
+    "16": "favicons/favicon-4.png",
+    "32": "favicons/favicon-3.png",
+    "48": "favicons/favicon-2.png",
+    "128": "favicons/favicon-1.png"
   },
   "chrome_url_overrides" : {
     "newtab": "index.html"

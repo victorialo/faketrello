@@ -85,7 +85,7 @@ const Items = styled.div`
 const Item = styled.div`
   display: flex;
   justify-content: space-between;
-  margin: 2px auto;
+  margin: 10px auto;
   padding: 10px 15px;
   border: 1px black solid;
   background-color: rgba(255, 255, 255, 0.8);
@@ -101,6 +101,7 @@ const Text = styled.div`
   //background: none;
   //border: none;
   font-size: 13px;
+  text-align: left;
   //&:hover {
   //  overflow: auto;
   //  text-overflow: initial;
