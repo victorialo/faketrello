@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components'
-import Lists from './Lists';
+import Lists from './components/Lists/Lists';
 
 import './App.css';
 
