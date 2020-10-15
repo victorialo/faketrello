@@ -1,9 +1,6 @@
 import React, {useEffect, useState} from "react";
 import styled from 'styled-components/macro';
-// import { DragDropContext } from 'react-beautiful-dnd';
 import {DragDropContext, Draggable, Droppable} from 'react-beautiful-dnd';
-// import ContentEditable from 'react-contenteditable';
-// import { numLists } from './constants';
 
 const List = styled.div`
   margin: 10px auto;
@@ -11,25 +8,24 @@ const List = styled.div`
   background-color: darkslateblue;
   padding: 10px;
   width: 100%;
-  
+
   &.list-${props => props.num} {
     background-color: ${props => props.color};
   }
-  
+
   .darker {
     background-color: rgba(0,0,0,0.4);
   }
-  
-  button { 
+
+  button {
     background: none;
     border-radius: 0;
     box-shadow: none;
     -webkit-appearance: none;
-    
-    //background-color: inherit;
+
     background: rgba(255,255,255,0.7);
     border: 1px black solid;
-    
+
     &:hover {
       background-color: rgba(255,255,255,0.6);
     }
@@ -37,11 +33,11 @@ const List = styled.div`
       box-shadow: 1px 1px 5px inset;
     }
   }
-  
+
   @media only screen and (min-width: 992px) {
      width: 30%;
   }
-  
+
 `
 
 const Error = styled.div`
@@ -94,25 +90,11 @@ const Item = styled.div`
 `
 const Text = styled.div`
   width: 95%;
-  //white-space: nowrap;
-  //overflow: hidden;
-  //flex-wrap: wrap;
-  //text-overflow: ellipsis;
-  //background: none;
-  //border: none;
   font-size: 13px;
   text-align: left;
-  //&:hover {
-  //  overflow: auto;
-  //  text-overflow: initial;
-  //}
   &:active {
     border: none;
   }
-  //&.hidden {
-  //  display: none;
-  //  
-  //}
 `
 const AddListButton = styled.button`
   margin: 0 auto;
@@ -127,21 +109,17 @@ const SelectColor = styled.input`
 `
 
 const Lists = () => {
-// class Lists extends React.Component {
-
   const storedLists = localStorage.getItem('lists') ? JSON.parse(localStorage.getItem('lists')) : [[], [], []]; // assumes 3 lists if no stored lists; Array.from({length: numLists}, () => []));
   const [numLists, setNumLists] = useState(storedLists.length || 3);
-  const [lists, setLists] = useState(storedLists);//new Array(numLists).fill(null).map(() => [])
-  const [input, setInput] = useState(Array.from({length:numLists}, () => "")); //new Array(numLists).fill(null).map(() => "")
+  const [lists, setLists] = useState(storedLists);
+  const [input, setInput] = useState(Array.from({length:numLists}, () => ""));
   const [newItem, setNewItem] = useState([]);
-  // const [titles, setTitles] = useState(Array.from({length: numLists}, () => "")); //new Array(numLists).fill(null).map(() => "")
+
   const [titles, setTitles] = useState(
     localStorage.getItem('titles')
       ? JSON.parse(localStorage.getItem('titles'))
       : ['To-Do', 'In Progress', 'Done'])
   const [entries, setEntries] = useState(
-    // localStorage.getItem('entries')
-    //   ? new Set(JSON.parse(localStorage.getItem('entries')))
     new Set(lists.reduce((a, b) => a.concat(b), []))
     || new Set());
   const [listColors, setListColors] = useState(
@@ -150,17 +128,13 @@ const Lists = () => {
       : ["#8b0000", "#bdb76b", "#61dafb"]);
   const [errors, setErrors] = useState("");
 
-  // localStorage.setItem('items', JSON.stringify(itemsArray))
-  // const data = JSON.parse(localStorage.getItem('items'))
-
   const addItem = (e, listNum) => {
     e.preventDefault();
     const num = parseInt(listNum);
-    // const input = e.target.value();
+
     let item = input[num];
-    // console.log("input", item);
-    // console.log("entries", entries);
-    if (item.length < 1 || entries.has(item)) {//lists[listNum].includes(input[num])) {
+
+    if (item.length < 1 || entries.has(item)) {
       if (item.length < 1) {
         console.error("bad input - empty");
         setErrors("empty");
@@ -177,10 +151,9 @@ const Lists = () => {
     setLists(newLists);
     entries.add(item);
     setEntries(entries);
-    // console.log("updated list", newLists);
+
     const newInput = Array.from({length:numLists}, () => "");
     setInput(newInput);
-    // Number(list)
   }
 
   const changeTitle = (e, num) => {
@@ -197,9 +170,8 @@ const Lists = () => {
     const list = parseInt(num);
     let newLists = [...lists];
     let current = newLists[list];
-    // current.indexOf(item);
     let item = current[ind];
-    // console.log("newlist", current);
+
     entries.delete(item);
     setEntries(entries);
     current.splice(ind, 1);
@@ -209,8 +181,7 @@ const Lists = () => {
 
   const updateInput = (e, num) => {
     e.preventDefault();
-    // console.log("updating to", e.currentTarget.value);
-    // setInput(e.target.value);
+
     let newInput = [...input];
     newInput[num] = e.target.value;
     setErrors("");
@@ -218,72 +189,43 @@ const Lists = () => {
   }
 
   const reorder = (list, indFrom, indTo) => {
-    // let newList = [...list];
-    // console.log(list.splice(indFrom,1));
     list.splice(indTo, 0, list.splice(indFrom,1)[0]);
     return list;
   }
 
   const move = (listFrom, listTo, indFrom, indTo) => {
-    // let newListFrom = [...listFrom];
-    // let newListTo = [...listTo];
     const removedItem = listFrom.splice(indFrom,1)[0];
     listTo.splice(indTo,0, removedItem);
-    // console.log("listfrom", listFrom, "listto", listTo);
     return [listFrom, listTo];
   }
 
   const drop = (result) => {
     const { source, destination } = result;
 
-    // dropped outside the list
     if (!destination) {
       return;
     }
 
     let newLists = [...lists];
-    // console.log("old lists", newLists);
     if (source.droppableId === destination.droppableId) {
-      // const updatedList =
-
-      // let state = { items };
       const id = source.droppableId.split('-')[1];
       newLists[id] = reorder(
-        // getList(source.droppableId),
         newLists[id],
         source.index,
         destination.index
       );
-
-      // if (source.droppableId === 'droppable2') {
-      // state = { selected: items };
-
-      // }
-
-      // this.setState(state);
-      // console.log("reorder in list", newLists);
     } else {
       const sourceId = source.droppableId.split('-')[1];
       const destId = destination.droppableId.split('-')[1];
       const result = move(
-        // getList(source.droppableId),
-        // getList(destination.droppableId),
         newLists[sourceId],
         newLists[destId],
         source.index,
         destination.index
       );
-
-      // this.setState({
-      //   items: result.droppable,
-      //   selected: result.droppable2
-      // });
       newLists[sourceId] = result[0];
       newLists[destId] = result[1];
-      // console.log("move across lists", newLists);
-
     }
-    // console.log(newLists);
     setLists(newLists);
   }
 
@@ -332,7 +274,6 @@ const Lists = () => {
   }
 
   const updateItem = (e, num, ind, old) => {
-    // const [item, old] = newItem;
     const item = e.target.textContent;
     entries.delete(old);
     entries.add(item);
@@ -348,12 +289,8 @@ const Lists = () => {
   }
 
   const buildList = (num) => {
-    // console.log("building list", num);
     let items = [...lists[num]];
-    // console.log("items in buildlist", items);
-    // console.log("items", items);
     const itElems = items.map((i, ind) => {
-      // console.log("i",i);
       return (
         <Draggable
           key={i}
@@ -367,10 +304,7 @@ const Lists = () => {
               {...provided.dragHandleProps}
             >
               <Item id={i}>
-                {/*<ContentEditable onClick={() => setNewItem([i, i])} onChange={e => setNewItem([e.target.value, i])} onBlur={(e) => updateItem(e, num, ind)} html={display(i)}/>*/}
-                {/*<Text onClick={() => setNewItem([i, i])} onChange={e => setNewItem([e.target.value, i])} onBlur={(e) => updateItem(e, num, ind)} value={display(i)}/>*/}
                 <Text contentEditable="true" onClick={() => setNewItem([i, i])} onChange={e => setNewItem([e.target.value, i])} onBlur={(e) => updateItem(e, num, ind)}>{display(i)}</Text>
-                {/*<Text>{display(i)}</Text>*/}
                 <button onClick={()=> removeItem(num, ind)}>x</button>
               </Item>
             </div>
@@ -378,8 +312,6 @@ const Lists = () => {
         </Draggable>
       );
     })
-    // console.log("updating input in ", num);
-    // console.log("classname", `list-${num}`);
     return (
       <List className={`list-${num}`} num={num} color={listColors[num]} >
         <DeleteButton onClick={()=>deleteList(num)}>x</DeleteButton>
@@ -395,14 +327,12 @@ const Lists = () => {
               <div
                 ref={provided.innerRef}
                 className={`darker`}
-                // style={{ backgroundColor: snapshot.isDraggingOver ? 'aliceblue' : 'grey' }}
                 {...provided.droppableProps}
               >
                 {itElems}
                 {provided.placeholder}
               </div>
              )}
-            {/*{itElems}*/}
           </Droppable>
         </Items>
     </List>
@@ -412,21 +342,11 @@ const Lists = () => {
   // fix issue with deleting things
   const buildLists = () => {
     let output = [];
-    // console.log("updated lists", lists);
     lists.forEach((l, i) => {
       output.push(buildList(i));
     });
-    // console.log("new output", output);
     return output;
-    // for (let i=0; i<lists.length; i++) {
-    //   output.push(buildList(i));
-    // }
   }
-
-  // const getList = (droppableId) => {
-  //   const id = droppableId.split('-')[1];
-  //   return lists[id];
-  // }
 
   const buildError = () => {
     switch (errors) {
@@ -439,7 +359,6 @@ const Lists = () => {
     }
   }
 
-  // useEffect(buildLists, [lists]);
   useEffect(() => {
     localStorage.setItem('lists', JSON.stringify(lists));
   }, [lists]);
