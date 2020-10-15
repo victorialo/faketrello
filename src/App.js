@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
-// import logo from './logo.svg';
+import React, { useState } from 'react';
 import styled from 'styled-components'
-import './App.css';
 import Lists from './Lists';
+
+import './App.css';
 
 const Title = styled.h1`
   text-shadow: 0 0 2px black;
