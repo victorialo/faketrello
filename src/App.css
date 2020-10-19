@@ -9,3 +9,9 @@ html, body {
 .App {
   text-align: center;
 }
+
+.dark {
+  background-color: #383728;
+  width: 100vw;
+  min-height: 100vh;
+}
