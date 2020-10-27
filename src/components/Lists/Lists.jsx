@@ -313,7 +313,7 @@ const Lists = () => {
       );
     })
     return (
-      <List className={`list-${num}`} num={num} color={listColors[num]} key={num}>
+      <List className={`list-${num}`} num={num} color={listColors[num]} key={`list-${num}`}>
         <DeleteButton onClick={()=>deleteList(num)}>x</DeleteButton>
         <SelectColor type={"color"} value={listColors[num]} onChange={(e) => changeColor(e,num)}/>
         <Title onChange={(e) => changeTitle(e, num)} value={titles[num]} />
