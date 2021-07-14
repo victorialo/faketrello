@@ -38,6 +38,18 @@ Cool potential features:
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 Drag and drop was implemented using [react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd).
 
+#Chrome Extension
+To use it as a Chrome extension:
+1) clone/download this repo
+2) `npm install`
+3) `npm run build`
+4) copy or move the `manifest.json` file from the outermost directory into the `build` folder.
+5) go to your Chrome extensions page: `chrome://extensions/`
+6) Turn "Developer mode" on if it isn't already, in the upper-right-hand corner.
+7) Click on "Load Unpacked" in the upper-left-hand corner.
+8) Select the `build` folder.
+9) Open a new tab - you should be all good to go!
+
 ## Available Scripts
 
 In the project directory, you can run:
