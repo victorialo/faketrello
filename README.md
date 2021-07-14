@@ -1,7 +1,7 @@
-#F A K E  T R E L L O
+# F A K E  T R E L L O
 This was made on stream at http://twitch.tv/riallymundane as interview practice in July 2020.
 
-##To-Do:
+## To-Do:
 Cool potential features:
 - ✔ <s>add a title per list</s>
 - <s>fix widths in mobile</s>
@@ -38,7 +38,8 @@ Cool potential features:
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 Drag and drop was implemented using [react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd).
 
-#Chrome Extension
+# Chrome Extension
+
 To use it as a Chrome extension:
 1) clone/download this repo
 2) `npm install`
