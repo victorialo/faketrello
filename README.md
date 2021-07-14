@@ -29,7 +29,10 @@ Cool potential features:
 - new tab chrome extension
 - <s>import/export tasks</s>
 
-
+> I tried to use trello and Trellno > trello
+> 
+> The task system is so clunky compared to clicking and dragging, I dont want to use a drop down to finish a task, feels unsatisfying. The colors are also really nice
+- willdism
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
