@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import {DragDropContext, Draggable, Droppable} from 'react-beautiful-dnd';
 
 const List = styled.div`
